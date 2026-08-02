@@ -157,14 +157,18 @@ nav {
 .intro-text {
   width: 40%;
 }
-.line-wrap {
-  overflow: hidden;
-  display: block;
+.line-wrap{
+    display:block;
+    overflow:hidden;
 }
 
-.line {
-  display: block;
-  will-change: transform;
+.line{
+    display:block;
+    will-change:transform;
+}
+
+.word-temp{
+    display:inline;
 }
 .mob-landing-page{
   display: none;
@@ -395,6 +399,9 @@ section,
   font-weight: 400;
   flex-shrink: 0;
   white-space: nowrap;
+}
+.sp{
+  font-size: 1.5rem;
 }
 
 /*FOOTER COMPONENT*/
@@ -851,7 +858,7 @@ footer {
     align-items: flex-start;
   }
   .info-texts h4{
-    font-size: 1.23rem;
+    font-size: 2rem;
   }
   .info-img {
     width: 100%;
@@ -859,12 +866,14 @@ footer {
   .info-about h2{
     width: 100%;
     font-size: 2.2rem;
+    text-align:center;
   }
 
   .info-texts .bottom {
     justify-content: space-between;
     gap: 0.75rem;
     padding-top: 2rem;
+    flex-direction: column;
   }
   .cta{
     display: none;
