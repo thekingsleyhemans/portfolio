@@ -4,6 +4,7 @@ import { initLoader } from "../engines/loader.js";
 import { initOverlay } from "../engines/overlay.js";
 import { loadProjects } from "../engines/projects.js";
 import { isFirstLoad } from "../core/transitions.js";
+import { introReady } from "../core/intro.js";
 
 // on a client-side nav back to "/", Astro swaps in a fresh, un-animated
 // .preloader element every time (it only exists on index.astro) — since
@@ -15,6 +16,7 @@ function skipPreloader() {
   if (preloader) {
     preloader.style.display = "none";
   }
+  introReady.preloader = true;
 }
 
 function initHome() {

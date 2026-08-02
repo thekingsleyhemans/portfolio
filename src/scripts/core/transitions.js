@@ -105,7 +105,5 @@ if (typeof document !== "undefined") {
 
     await wipeOut();          // reveal new content
     engine.playGroup("body"); // stagger everything in, same mechanism as your landing reveal
-
-    hasNavigated = false;
   });
 }
