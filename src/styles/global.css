@@ -290,7 +290,7 @@ section,
 .info-overlay {
   width: 100%;
   height: 100dvh;
-  position: absolute;
+  position: fixed;   /* was: position: absolute */
   top: 0;
   display: flex;
   justify-content: flex-end;
@@ -616,7 +616,6 @@ footer {
   color: var(--reds);
   line-height: 1;
   text-align: left;
-  display: flex;
   align-items: baseline;
   gap: 0.75rem;
   flex-wrap: wrap;
@@ -745,6 +744,7 @@ footer {
     aspect-ratio: auto;
     height: auto;
   }
+  
 }
 
 /* ==========================================================
@@ -753,6 +753,9 @@ footer {
 ========================================================== */
 
 @media (max-width: 900px) {
+  .project_deets h3 {
+    transform: translateY(0);
+  }
   .container {
     padding: 0 var(--text-m);
   }
@@ -827,12 +830,17 @@ footer {
 
   /* Info overlay — side panel becomes a full-width takeover */
   .info-overlay{
-    height: auto;
-    overflow-y: auto;
+    height: 100dvh;    /* was: height: auto — auto let content push
+                           this box to 1244px, which counted toward
+                           page scroll height even while off-screen */
+    overflow: hidden;  /* was: overflow-y: auto */
   }
   .info-overlay-wrap {
     width: 100%;
+    height: 100%;      /* new — fills the now-fixed-height parent */
+    overflow-y: auto;  /* new — scrolling now happens inside here instead */
   }
+
   .info-wrap{
     flex-direction: column;
     gap: var(--text-m);

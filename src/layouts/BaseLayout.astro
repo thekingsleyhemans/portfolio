@@ -4,13 +4,15 @@ import { ClientRouter } from "astro:transitions";
 import TransitionOverlay from "../components/TransitionOverlay.astro";
 
 interface Props {
-  title?: string;   // full SEO title, shown in the browser tab
+  title?: string;    // full SEO title, shown in the browser tab
   pageName?: string; // short display name used for the transition stagger text — defaults to title
+  bodyClass?: string; // optional class(es) added to <body>, for page-specific CSS overrides
 }
 
 const {
   title = "Designer and Creative Developer - Kingsley Hemans",
   pageName = "Kingsley Hemans",
+  bodyClass = "",
 } = Astro.props;
 ---
 <html lang="en">
@@ -75,7 +77,7 @@ const {
   <ClientRouter />
 </head>
 
-<body>
+<body class={bodyClass}>
   <slot />
   <TransitionOverlay transition:persist transition:name="page-transition-overlay" />
 
