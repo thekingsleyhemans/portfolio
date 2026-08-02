@@ -54,9 +54,10 @@ class InfiniteGrid {
 
     // ---- grid geometry (tune these) ----
     this.itemCols = 3;
-    this.maxCardWidth = 380; // bounding box each card's aspect-fit size sits within
-    this.maxCardHeight = 420;
-    this.gap = 50;
+    const { maxCardWidth, maxCardHeight, gap } = this.getCardDimensions();
+    this.maxCardWidth = maxCardWidth; // bounding box each card's aspect-fit size sits within
+    this.maxCardHeight = maxCardHeight;
+    this.gap = gap;
     this.cellW = this.maxCardWidth + this.gap; // grid cell stays uniform for the infinite wrap
     this.cellH = this.maxCardHeight + this.gap;
 
@@ -106,9 +107,36 @@ class InfiniteGrid {
     this.resizeTimer = null;
     this.onResize = () => {
       clearTimeout(this.resizeTimer);
-      this.resizeTimer = setTimeout(() => this.rebuild(), 200);
+      this.resizeTimer = setTimeout(() => {
+        const { maxCardWidth, maxCardHeight, gap } = this.getCardDimensions();
+        this.maxCardWidth = maxCardWidth;
+        this.maxCardHeight = maxCardHeight;
+        this.gap = gap;
+        this.cellW = this.maxCardWidth + this.gap;
+        this.cellH = this.maxCardHeight + this.gap;
+        this.rebuild();
+      }, 200);
     };
     window.addEventListener("resize", this.onResize);
+  }
+
+  /* ---------------- responsive card sizing ---------------- */
+
+  getCardDimensions() {
+    const width = window.innerWidth;
+
+    if (width <= 480) {
+      // small phones — aim for ~2.5 cards visible per row
+      return { maxCardWidth: 200, maxCardHeight: 220, gap: 24 };
+    }
+
+    if (width <= 900) {
+      // tablets / large phones
+      return { maxCardWidth: 200, maxCardHeight: 220, gap: 24 };
+    }
+
+    // desktop — unchanged from before
+    return { maxCardWidth: 380, maxCardHeight: 420, gap: 50 };
   }
 
   /* ---------------- shuffle mapping ---------------- */
@@ -515,7 +543,14 @@ class InfiniteGrid {
     }
 
     const aspect = rect.height / rect.width;
-    let targetWidth = Math.min(window.innerWidth * 0.6, 640);
+
+    // on small screens, open the card much closer to full-width —
+    // the old 0.6 * innerWidth / 640px cap left mobile cards tiny
+    // inside the lightbox even though there's plenty of room
+    const isMobile = window.innerWidth <= 900;
+    let targetWidth = isMobile
+      ? window.innerWidth * 0.9
+      : Math.min(window.innerWidth * 0.6, 640);
     let targetHeight = targetWidth * aspect;
 
     const maxHeight = window.innerHeight * 0.85;

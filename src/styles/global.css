@@ -820,7 +820,7 @@ footer {
   }
 
   .grid-card-title {
-    font-size: var(--text-m);
+    font-size: var(--text-s);
   }
 
   .grid-card-desc {
