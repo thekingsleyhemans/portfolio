@@ -765,13 +765,20 @@ footer {
      nav-links) is too tight to stay in a row on tablet/mobile */
   .nav-wrapper {
     flex-wrap: wrap;
-    row-gap: 1rem;
+    row-gap: 0.75rem; /* was 1rem — trims header height */
+  }
+
+  header {
+    padding-top: 0.75rem; /* was 1rem, inherited from base rule */
   }
 
   .intro-text {
     width: 100%;
     order: 3;
-    padding-top: 2rem;
+    padding-top: 1rem; /* was 2rem — this was the single biggest
+                           contributor to header height on mobile,
+                           and the main driver of the extra page
+                           scroll */
   }
 
   .nav-links {
@@ -780,10 +787,16 @@ footer {
 
   /* Hero */
   .hero-text{
-    padding-bottom: 2rem;
+    padding-bottom: 1.25rem; /* was 2rem — trims vertical space so
+                                 header + hero + footer fit in one
+                                 viewport */
   }
   .hero-text h1 {
     font-size: var(--text-3xl, var(--text-2xl));
+  }
+
+  .landing-page {
+    padding-top: 1rem; /* was 2rem globally, no mobile override before */
   }
 
   /* Project cards — shrink the clamp's floor so 2-3 cards' worth of
@@ -794,6 +807,22 @@ footer {
 
   .project__card > img {
     height: clamp(16rem, 48vh, 30rem);
+  }
+
+  /* Archive grid — cards themselves are sized in JS, but the text
+     overlay was using desktop font sizes/padding */
+  .grid-card-details {
+    padding: 1rem;
+    gap: 0.3rem;
+  }
+
+  .grid-card-title {
+    font-size: var(--text-m);
+  }
+
+  .grid-card-desc {
+    font-size: var(--text-2xs);
+    max-width: 100%;
   }
 
   /* Info overlay — side panel becomes a full-width takeover */
