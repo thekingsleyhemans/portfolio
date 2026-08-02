@@ -1,0 +1,66 @@
+[
+  {
+    "image": "/images/archives/TheJunkMag1.jpg",
+    "width": 3240,
+    "height": 5760,
+    "year": "2024",
+    "title": "The Junk Mag Visuals 1",
+    "description": "A short line describing this piece of work."
+  },
+  {
+    "image": "/images/archives/TheJunkMag2.jpg",
+    "width": 3240,
+    "height": 5760,
+    "year": "2024",
+    "title": "The Junk Mag Visuals 2",
+    "description": "A short line describing this piece of work."
+  },
+  {
+    "image": "/images/space3.jpg",
+    "width": 736,
+    "height": 1104,
+    "year": "2023",
+    "title": "Project Three",
+    "description": "A short line describing this piece of work."
+  },
+  {
+    "image": "/images/space2.png",
+    "width": 1672,
+    "height": 941,
+    "year": "2023",
+    "title": "Project Four",
+    "description": "A short line describing this piece of work."
+  },
+  {
+    "image": "/images/archives/pattern.jpg",
+    "width": 6145,
+    "height": 7681,
+    "year": "2025",
+    "title": "Exploration",
+    "description": "A short line describing this piece of work."
+  },
+  {
+    "image": "/images/archives/serwaa-akoto.jpg",
+    "width": 3000,
+    "height": 3000,
+    "year": "2024",
+    "title":"Exploration",
+    "description": "A short line describing this piece of work."
+  },
+  {
+    "image": "/images/archives/Creative Junkies Visuals-2.jpg",
+    "width": 1080,
+    "height": 1080,
+    "year": "2024",
+    "title":"Exploration",
+    "description": "A short line describing this piece of work."
+  },
+  {
+    "image": "/images/archives/Creative junkies visuals.jpg",
+    "width": 1080,
+    "height": 1080,
+    "year": "2024",
+    "title":"Exploration",
+    "description": "A short line describing this piece of work."
+  }
+]

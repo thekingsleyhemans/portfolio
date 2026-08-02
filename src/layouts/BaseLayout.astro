@@ -1,0 +1,86 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import TransitionOverlay from "../components/TransitionOverlay.astro";
+
+interface Props {
+  title?: string;   // full SEO title, shown in the browser tab
+  pageName?: string; // short display name used for the transition stagger text — defaults to title
+}
+
+const {
+  title = "Designer and Creative Developer - Kingsley Hemans",
+  pageName = "Kingsley Hemans",
+} = Astro.props;
+---
+<html lang="en">
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Kingsley Hemans",
+      "url": "https://www.yourdomain.com",
+      "description": "Creative design and development studio.",
+      "sameAs": [
+        "https://instagram.com/hemansjr",
+        "https://linkedin.com/in/yourprofile"
+      ]
+    }
+  </script>
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+
+  <meta name="page-name" content={pageName} />
+
+  <meta name="description" content="Designer and Creative Developer creating thoughful interactions
+                and experiences for humans." />
+
+  <meta name="keywords"
+    content="web design, architecture, interior design, creative studio, website designer, web designer, web developer, creative developer, interaction design, UI/UX designer, Kingsley Hemans, hemansjr, Visual designer, awwwards, behance, portfolio, creative portfolio, design portfolio, web development, front-end development" />
+
+  <meta name="author" content="Kingsley Hemans" />
+
+  <link rel="canonical" href="https://www.yourdomain.com/" />
+
+  <!-- Open Graph (Social Sharing) -->
+
+  <meta property="og:title" content={title} />
+
+  <meta property="og:description" content="Designer and Creative Developer creating thoughful interactions
+                and experiences for humans." />
+
+  <meta property="og:image" content="https://www.yourdomain.com/images/cover.jpg" />
+
+  <meta property="og:url" content="https://www.yourdomain.com" />
+
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="twitter:title" content={title} />
+
+  <meta name="twitter:description" content="Designer and Creative Developer creating thoughful interactions
+                and experiences for humans." />
+
+  <meta name="twitter:image" content="https://www.yourdomain.com/images/cover.jpg" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <ClientRouter />
+</head>
+
+<body>
+  <slot />
+  <TransitionOverlay transition:persist transition:name="page-transition-overlay" />
+
+  <script type="module" src="/src/scripts/core/transitions.js"></script>
+  <script type="module" src="/src/scripts/pages/home.js"></script>
+</body>
+
+</html>

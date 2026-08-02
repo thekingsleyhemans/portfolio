@@ -1,0 +1,136 @@
+---
+// src/pages/project/[slug].astro
+import Layout from '../../layouts/BaseLayout.astro';
+import projects from '../../../public/data/projects.json';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import InfoOverlay from '../../components/InfoOverlay.astro';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+const VIDEO_EXTENSIONS = ['.mp4', '.webm', '.mov'];
+
+function isVideo(item) {
+  if (item.type) return item.type === 'video';
+  return VIDEO_EXTENSIONS.some((ext) => item.src?.toLowerCase().endsWith(ext));
+}
+
+// your gallery data is inconsistent — some entries are plain strings,
+// some are { src, span, type } objects. Normalize once here so the
+// template doesn't need to branch per-item. `type` is inferred from
+// the file extension when not set explicitly, so you don't have to
+// tag every plain image.
+const gallery = (project.gallery ?? []).map((item) => {
+  const normalized = typeof item === 'string' ? { src: item, span: null } : item;
+  return { ...normalized, type: isVideo(normalized) ? 'video' : 'image' };
+});
+
+const [leadMedia, ...restMedia] = gallery;
+const tags = project.services?.length ? project.services : [project.category];
+---
+
+<Layout title={project.title}>
+  <InfoOverlay/>
+  <Header />
+
+  <main class="case-study">
+    <div class="container">
+      <section class="case-study__intro">
+        <div class="case-study__tags">
+          {tags.map((tag, i) => (
+            <>
+              <span class="case-study__tag">{tag}</span>
+              {i < tags.length - 1 && <span class="case-study__tag-divider">/</span>}
+            </>
+          ))}
+        </div>
+
+        <h1
+          id="project-title"
+          data-split="words"
+          data-trigger="manual"
+          data-engine="project-title"
+        >
+          {project.title}
+          
+        </h1>
+      </section>
+
+      {leadMedia && (
+        <section class="case-study__lead-media">
+          {leadMedia.type === 'video' ? (
+            <video src={leadMedia.src} autoplay muted loop playsinline></video>
+          ) : (
+            <img src={leadMedia.src} alt={project.title} />
+          )}
+        </section>
+      )}
+
+      <section class="case-study__info">
+        <div class="case-study__about">
+          <span class="case-study__label">/ About the project</span>
+          <p id="project-description">{project.description}</p>
+        </div>
+
+        <div class="case-study__facts">
+          {project.client && (
+            <div class="case-study__fact-group">
+              <span class="case-study__label">/ Credits</span>
+              <dl>
+                <div class="case-study__fact-row">
+                  <dt>Client</dt>
+                  <dd>{project.client}</dd>
+                </div>
+                {project.credits?.map((credit) => (
+                  <div class="case-study__fact-row">
+                    <dt>{credit.role}</dt>
+                    <dd>{credit.name}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )}
+
+          {project.year && (
+            <div class="case-study__fact-group">
+              <span class="case-study__label">/ Year</span>
+              <p>{project.year}</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {restMedia.length > 0 && (
+        <section class="case-study__gallery" id="project-gallery">
+          {restMedia.map((item) => (
+            item.type === 'video' ? (
+              <video
+                src={item.src}
+                class={item.span ? `is-${item.span}` : undefined}
+                autoplay
+                muted
+                loop
+                playsinline
+              ></video>
+            ) : (
+              <img
+                src={item.src}
+                alt={project.title}
+                class={item.span ? `is-${item.span}` : undefined}
+              />
+            )
+          ))}
+        </section>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

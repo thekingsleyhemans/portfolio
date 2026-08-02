@@ -1,0 +1,79 @@
+@font-face {
+  font-family: Primary;
+  src: url(/fonts/InstrumentSerif-Regular.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: Body;
+  src: url(/fonts/Switzer-Variable.ttf);
+}
+:root {
+  /*Typography Variables*/
+
+  --text-2xs: clamp(
+    0.82rem,
+    calc(0.00018518518518518534 * (100vw - 36rem) + 0.82rem),
+    0.84rem
+  );
+  --text-xs: clamp(
+    1.02rem,
+    calc(0.0010185185185185173 * (100vw - 36rem) + 1.02rem),
+    1.13rem
+  );
+  --text-s: clamp(
+    1.28rem,
+    calc(0.002037037037037037 * (100vw - 36rem) + 1.28rem),
+    1.5rem
+  );
+  --text-m: clamp(
+    1.6rem,
+    calc(0.003703703703703703 * (100vw - 36rem) + 1.6rem),
+    2rem
+  );
+  --text-l: clamp(
+    2rem,
+    calc(0.0062037037037037035 * (100vw - 36rem) + 2rem),
+    2.67rem
+  );
+  --text-xl: clamp(
+    2.5rem,
+    calc(0.00972222222222222 * (100vw - 36rem) + 2.5rem),
+    3.55rem
+  );
+  --text-2xl: clamp(
+    3.13rem,
+    calc(0.014907407407407411 * (100vw - 36rem) + 3.13rem),
+    4.74rem
+  );
+  --text-3xl: clamp(
+    3.91rem,
+    calc(0.022222222222222216 * (100vw - 36rem) + 3.91rem),
+    6.31rem
+  );
+  --text-4xl: clamp(
+    4.88rem,
+    calc(0.03277777777777778 * (100vw - 36rem) + 4.88rem),
+    8.42rem
+  );
+  --text-5xl: clamp(
+    6.1rem,
+    calc(0.04740740740740742 * (100vw - 36rem) + 6.1rem),
+    11.22rem
+  );
+  --text-6xl: clamp(
+    7.63rem,
+    calc(0.06787037037037037 * (100vw - 36rem) + 7.63rem),
+    14.96rem
+  );
+  --text-7xl: clamp(
+    9.54rem,
+    calc(0.09629629629629631 * (100vw - 36rem) + 9.54rem),
+    19.94rem
+  );
+
+  /*Color Variables*/
+
+  --reds: rgb(216, 24, 24);
+  --blacks: rgb(17, 17, 17);
+  --whites: rgb(233, 233, 233);
+}

@@ -1,0 +1,35 @@
+<div class="page-transition">
+  <div class="pt-wrap">
+    <h1 class="pt-title" id="pt-title"></h1>
+  </div>
+</div>
+
+<style>
+  .page-transition {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    background-color: var(--reds);
+    z-index: 2000;
+    clip-path: inset(0% 0 100% 0); /* hidden — collapsed at bottom, matches your preloader's closed state */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .pt-wrap {
+    overflow: hidden;
+  }
+
+  .pt-title {
+    font-family: "Primary";
+    font-weight: 400;
+    font-size: var(--text-xl);
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+</style>

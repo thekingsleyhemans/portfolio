@@ -1,0 +1,13 @@
+{
+  "name": "Kingsley Hemans",
+  "short_name": "hemansjr",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg"
+    }
+  ]
+}

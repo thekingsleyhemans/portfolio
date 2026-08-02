@@ -1,0 +1,155 @@
+[
+  {
+    "id": "limear",
+    "slug": "limear",
+    "title": "LimeAR Platform",
+    "category": "Product Design",
+    "heroImage": "https://picsum.photos/id/180/1600/1000",
+
+    "services": ["Product Design", "UI/UX Design", "Frontend Development"],
+    "client": "Lime Technologies",
+    "year": "2024",
+    "credits": [
+      { "role": "Creative Director", "name": "Maya Torres" },
+      { "role": "Art Director", "name": "Noah Bennett" }
+    ],
+
+    "description": "LimeAR is an augmented reality platform designed to help brands create immersive, sales-driven experiences. The project involved designing a seamless interface and developing a performant frontend system.",
+
+    "gallery": [
+      { "src": "https://picsum.photos/id/180/1600/1000", "type": "image", "span": "feature" },
+      { "src": "https://picsum.photos/id/180/1600/1000", "type": "image", "span": "tall" },
+      { "src": "https://picsum.photos/id/180/1600/1000", "type": "image", "span": "tall" },
+      { "src": "/images/eye.gif", "type": "image", "span": "wide" },
+      {"src": "https://picsum.photos/id/180/1600/1000" , "type": "image", "span": "tall"} 
+    ]
+  },
+
+  {
+    "id": "benokes",
+    "slug": "benokes",
+    "title": "Benedicta Gokah",
+    "category": "UI/UX Design, Webflow",
+    "heroImage": "https://picsum.photos/id/225/1600/1000",
+
+    "services": ["UI/UX Design", "Interaction Design", "Webflow Development"],
+    "client": "Benedicta Gokah.",
+    "year": "2023",
+    "credits": [
+      { "role": "Creative Director", "name": "Sofia Reyes" },
+      { "role": "Art Director", "name": "Ethan Cole" }
+    ],
+
+    "description": "Creative Beans is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      { "src": "https://picsum.photos/id/225/1600/1000", "type": "image", "span": "feature" },
+      { "src": "https://picsum.photos/id/292/1600/1000", "type": "image", "span": "wide" },
+      { "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", "type": "video", "span": "wide" },
+      { "src": "https://picsum.photos/id/301/1200/1500", "type": "image", "span": "tall" },
+      { "src": "https://picsum.photos/id/306/1200/1500", "type": "image", "span": "tall" }
+    ]
+  },
+
+  {
+    "id": "my-portfolio",
+    "slug": "my-portfolio",
+    "title": "My Portfolio",
+    "category": "UI/UX Design",
+    "heroImage": "https://picsum.photos/id/342/1600/1000",
+
+    "services": ["UI/UX Design", "Interaction Design", "Web Development"],
+    "client": "Personal Project",
+    "year": "2024",
+    "credits": [
+      { "role": "Creative Director", "name": "Self-directed" },
+      { "role": "Art Director", "name": "Self-directed" }
+    ],
+
+    "description": "My Portfolio is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      { "src": "https://picsum.photos/id/342/1600/1000", "type": "image", "span": "feature" },
+      { "src": "https://picsum.photos/id/365/1600/1000", "type": "image", "span": "wide" },
+      { "src": "https://picsum.photos/id/370/1200/1500", "type": "image", "span": "tall" },
+      { "src": "https://picsum.photos/id/374/1200/1500", "type": "image", "span": "tall" }
+    ]
+  },
+
+  {
+    "id": "atelier-website",
+    "slug": "atelier-website",
+    "title": "Atelier Website",
+    "category": "UI/UX Design",
+    "heroImage": "https://picsum.photos/id/402/1600/1000",
+
+    "services": ["UI/UX Design", "Interaction Design", "Web Development"],
+    "client": "Atelier Studio",
+    "year": "2023",
+    "credits": [
+      { "role": "Creative Director", "name": "Louis Marchand" },
+      { "role": "Art Director", "name": "Ines Dubois" }
+    ],
+
+    "description": "Atelier Website is a showcase site built for a design studio, focused on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      { "src": "https://picsum.photos/id/402/1600/1000", "type": "image", "span": "feature" },
+      { "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", "type": "video", "span": "wide" },
+      { "src": "https://picsum.photos/id/411/1600/1000", "type": "image", "span": "wide" },
+      { "src": "https://picsum.photos/id/419/1200/1500", "type": "image", "span": "tall" },
+      { "src": "https://picsum.photos/id/429/1200/1500", "type": "image", "span": "tall" }
+    ]
+  },
+
+  {
+    "id": "palm-oil-collective",
+    "slug": "palm-oil-collective",
+    "title": "Palm Oil Collective",
+    "category": "UI/UX Design",
+    "heroImage": "https://picsum.photos/id/452/1600/1000",
+
+    "services": ["UI/UX Design", "Interaction Design", "Web Development"],
+    "client": "Palm Oil Collective",
+    "year": "2022",
+    "credits": [
+      { "role": "Creative Director", "name": "Amara Nwosu" },
+      { "role": "Art Director", "name": "Diego Salas" }
+    ],
+
+    "description": "Palm Oil Collective is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      { "src": "https://picsum.photos/id/452/1600/1000", "type": "image", "span": "feature" },
+      { "src": "https://picsum.photos/id/459/1600/1000", "type": "image", "span": "wide" },
+      { "src": "https://picsum.photos/id/468/1200/1500", "type": "image", "span": "tall" },
+      { "src": "https://picsum.photos/id/470/1200/1500", "type": "image", "span": "tall" }
+    ]
+  },
+
+  {
+    "id": "the-junk-mag",
+    "slug": "the-junk-mag",
+    "title": "The Junk Mag",
+    "category": "UI/UX Design",
+    "heroImage": "https://picsum.photos/id/1080/1600/1000",
+
+    "services": ["UI/UX Design", "Interaction Design", "Web Development"],
+    "client": "The Junk Mag",
+    "year": "2024",
+    "credits": [
+      { "role": "Creative Director", "name": "Priya Nair" },
+      { "role": "Art Director", "name": "Marcus Webb" }
+    ],
+
+    "description": "The Junk Mag is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      { "src": "https://picsum.photos/id/1080/1600/1000", "type": "image", "span": "feature" },
+      { "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", "type": "video", "span": "wide" },
+      { "src": "https://picsum.photos/id/1084/1200/1500", "type": "image", "span": "tall" },
+      { "src": "https://picsum.photos/id/1074/1200/1500", "type": "image", "span": "tall" },
+      { "src": "https://picsum.photos/id/1050/1600/1000", "type": "image", "span": "wide" }
+    ]
+  }
+]
