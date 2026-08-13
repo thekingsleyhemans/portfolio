@@ -136,6 +136,12 @@ nav {
   font-size: var(--text-xs);
   user-select: none;
 }
+.nav-links ul li a,
+.cta a,
+#overlay-open {
+  opacity: 0.7;
+  transition: opacity 0.22s ease;
+}
 .logo-wrap a {
   font-family: "Body";
   font-size: var(--text-xs);
@@ -145,16 +151,22 @@ nav {
 }
 #overlay-open {
   cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
 }
-#overlay-open:hover{
-  opacity: 0.7;
-}
-.nav-links ul li a {
-  transition: opacity 0.3s ease-in-out;
-}
-.nav-links ul li a:hover{
-  opacity: 0.7;
+#overlay-open:hover,
+#overlay-open:focus,
+#overlay-open:active,
+.cta a:hover,
+.cta a:focus,
+.cta a:active,
+.nav-links ul li:hover a,
+.nav-links ul li:focus-within a,
+.nav-links ul li a:hover,
+.nav-links ul li a:focus,
+.nav-links ul li a:active,
+.footer-links a:hover,
+.footer-links a:focus,
+.footer-links a:active {
+  opacity: 1;
 }
 .intro-text p {
   font-family: "Body";
@@ -382,7 +394,7 @@ section,
   font-size: var(--text-xl);
   font-weight: 400;
   line-height: 1.15;
-  max-width: 22ch;
+  max-width: 60ch;
   color: var(--blacks);
 }
 
@@ -472,6 +484,14 @@ footer {
   color: var(--reds);
   font-size: var(--text-2xs);
   opacity: 0.7;
+}
+.footer-links a {
+  transition: opacity 0.22s ease;
+}
+.footer-links a:hover,
+.footer-links a:focus,
+.footer-links a:active {
+  opacity: 1;
 }
 
 /* ==========================================================
