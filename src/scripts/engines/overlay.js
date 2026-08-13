@@ -4,7 +4,7 @@ import { TextEngine } from "./split-engine.js";
 export function initOverlay() {
   const overlayOpener = document.querySelector("#overlay-open");
   const overlayCloser = document.querySelector("#overlay-close");
-  const overlayImg = document.querySelector(".info-img img");
+  const overlayImg = document.querySelector(".info-photo img");
 
   const xPosition = "100%";
 

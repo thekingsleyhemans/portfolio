@@ -178,7 +178,9 @@ export function initFlowSlider(container, wrap, originalCount) {
     animationFrame = requestAnimationFrame(tick);
   }
 
-  container.addEventListener("wheel", onWheel, { passive: false });
+  const scrollTarget = document.body || document.documentElement;
+
+  scrollTarget.addEventListener("wheel", onWheel, { passive: false });
 
   container.addEventListener("pointerdown", onPointerDown);
   container.addEventListener("pointermove", onPointerMove);
@@ -216,7 +218,7 @@ export function initFlowSlider(container, wrap, originalCount) {
   return () => {
     cancelAnimationFrame(animationFrame);
 
-    container.removeEventListener("wheel", onWheel);
+    scrollTarget.removeEventListener("wheel", onWheel);
     container.removeEventListener("pointerdown", onPointerDown);
     container.removeEventListener("pointermove", onPointerMove);
     container.removeEventListener("pointerup", onPointerUp);
