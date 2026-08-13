@@ -258,6 +258,7 @@ class InfiniteGrid {
 
         const item = this.items[itemIndex];
         const tile = this.createTile(item);
+        tile.classList.add("is-intro-hidden");
         this.wrap.appendChild(tile);
 
         // each card keeps its own image's aspect ratio, so it's centered
@@ -274,6 +275,8 @@ class InfiniteGrid {
         });
       }
     }
+
+    this.animateIntro();
 
     this.videoObserver = new IntersectionObserver(
       (entries) => {
@@ -299,6 +302,29 @@ class InfiniteGrid {
   rebuild() {
     if (this.activeTile || this.isDestroyed) return;
     this.buildPool();
+  }
+
+  animateIntro() {
+    const introCards = this.tiles.map(({ el }) => el.querySelector(".grid-card-inner"));
+
+    if (!introCards.length) return;
+
+    gsap.set(introCards, {
+      opacity: 0,
+      scale: 0.78,
+      transformOrigin: "center center",
+    });
+
+    gsap.to(introCards, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      ease: "back.out(2)",
+      stagger: 0.05,
+      onComplete: () => {
+        this.tiles.forEach(({ el }) => el.classList.remove("is-intro-hidden"));
+      },
+    });
   }
 
   createTile(item) {
@@ -522,6 +548,18 @@ class InfiniteGrid {
     this.wrap.classList.add("has-active");
     tileEl.classList.add("is-active");
 
+    const details = tileEl.querySelector(".grid-card-details");
+    if (details) {
+      gsap.set(details, { opacity: 0, y: 12 });
+      gsap.to(details, {
+        opacity: 1,
+        y: 0,
+        duration: 0.38,
+        ease: "power2.out",
+        delay: 0.08,
+      });
+    }
+
     // lock the page and bring in the lightbox chrome
     document.body.style.overflow = "hidden";
     this.backdrop.classList.add("is-visible");
@@ -579,6 +617,16 @@ class InfiniteGrid {
 
     this.backdrop.classList.remove("is-visible");
     this.closeBtn.classList.remove("is-visible");
+
+    const details = tileEl.querySelector(".grid-card-details");
+    if (details) {
+      gsap.to(details, {
+        opacity: 0,
+        y: 12,
+        duration: 0.22,
+        ease: "power2.inOut",
+      });
+    }
 
     // animate straight back to its exact rest position/size — no
     // opacity involved, so there's nothing to pop or overlap

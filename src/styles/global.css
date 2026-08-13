@@ -93,6 +93,7 @@ body {
   height: 0;
   overflow: hidden;
   position: relative;
+  border-radius: 12px;
 }
 .l-img-wrap img{
   width: 100%;
@@ -230,7 +231,7 @@ section,
 }
 
 .project__card {
-  width: clamp(320px, 18vw, 450px);
+  width: clamp(520px, 18vw, 750px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -510,6 +511,12 @@ footer {
   user-select: none;
 }
 
+.grid-card.is-intro-hidden .grid-card-inner {
+  opacity: 0;
+  transform: scale(0.78);
+  transform-origin: center center;
+}
+
 /* other cards stay fully visible while one is open — just blocked
    from receiving pointer events. No opacity, no dimming. */
 .grid-wrap.has-active .grid-card:not(.is-active) {
@@ -523,6 +530,10 @@ footer {
   overflow: hidden;
   position: relative;
   background: var(--blacks);
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .grid-card img,
@@ -557,6 +568,7 @@ footer {
   transform: translateY(12px);
   pointer-events: none;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  will-change: opacity, transform;
 }
 
 .grid-card.is-active .grid-card-details {
