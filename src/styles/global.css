@@ -144,6 +144,16 @@ nav {
 }
 #overlay-open {
   cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+#overlay-open:hover{
+  opacity: 0.7;
+}
+.nav-links ul li a {
+  transition: opacity 0.3s ease-in-out;
+}
+.nav-links ul li a:hover{
+  opacity: 0.7;
 }
 .intro-text p {
   font-family: "Body";
@@ -294,37 +304,59 @@ section,
 .info-overlay {
   width: 100%;
   height: 100dvh;
-  position: fixed;   /* was: position: absolute */
+  position: fixed;
   top: 0;
+  right: 0;
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
   overflow: hidden;
   transform: translateX(100%);
 }
+
 .info-overlay-wrap {
-  width: 70%;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: var(--reds);
-  padding: var(--text-m);
-  transform: translateX(100%);
-}
-.info-wrap {
-  width: 100%;
+  position: relative; /* anchors .info-cta */
+  width: 75%;
   height: 100%;
   box-sizing: border-box;
   display: flex;
-  gap: var(--text-l);
+  background-color: var(--reds);
+  transform: translateX(100%);
 }
-.info-content {
+
+/* Portrait column */
+.info-photo {
+  width: 40%;
+  height: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: var(--text-m);
+}
+.info-photo figure {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.info-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Red copy column */
+.info-panel {
   flex: 1 1 auto;
   min-width: 0;
   height: 100%;
+  box-sizing: border-box;
+  padding: var(--text-m);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: var(--text-l);
 }
+
 .close-wrap {
   flex-shrink: 0;
 }
@@ -334,73 +366,88 @@ section,
   color: var(--blacks);
   cursor: pointer;
 }
-.info-about {
-  flex-shrink: 0;
+
+.info-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--text-xl);
 }
+
 .info-about h2 {
   font-family: "Primary";
   font-size: var(--text-xl);
   font-weight: 400;
-  line-height: 1.1;
-  max-width: 70ch;
+  line-height: 1.15;
+  max-width: 22ch;
+  color: var(--blacks);
 }
-.info-profile {
-  flex: 1 1 auto;
-  min-height: 0;
-  width: 100%;
-  padding-top: var(--text-xl);
-  display: flex;
-  gap: var(--text-l);
-  align-items: flex-start;   /* was: align-items: flex-start */
-}
-.info-img {
-  width: clamp(14rem, 22vw, 22rem);
-  aspect-ratio: 3 / 4;   /* locks a true portrait ratio, independent of viewport height */
-  height: auto;          /* was: height: 100% */
-  flex-shrink: 0;
-  overflow: hidden;
-}
-.info-img figure {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-.info-img img {
-  width: 100%;           /* was: width: 20rem (redundant now, container controls width) */
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  clip-path: inset(0% 0 100% 0);
-  scale: 0.8;
-  transform-origin: top;
-}
-.info-texts .bottom {
-  display: flex;
-  gap: var(--text-m);
-  padding-top: 5rem;
-}
-.info-texts .top p {
+
+.info-body p {
   font-family: "Body";
   font-size: var(--text-s);
-  line-height: 1.2;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  max-width: 48ch;
+  color: var(--blacks);
 }
-.info-texts .bottom p {
+
+.info-meta {
+  display: flex;
+  gap: var(--text-xxl, 6rem);
+}
+.info-meta-col p {
   font-family: "Body";
   font-size: var(--text-2xs);
   color: var(--blacks);
   font-weight: 500;
   padding-bottom: 0.5rem;
 }
-.info-texts h4 {
+.info-meta-col .ser-list h4 {
   font-family: "Primary";
   font-size: var(--text-m);
   font-weight: 400;
-  flex-shrink: 0;
   white-space: nowrap;
+  color: var(--blacks);
+}
+.info-meta-col .ser-list h4 .sp {
+  font-family: "Body";
+  font-size: var(--text-2xs);
+  font-weight: 500;
 }
 
+/* Floating CTA bar, bridges photo + panel */
+.info-cta {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: var(--text-m);
+  background-color: var(--blacks);
+  overflow: hidden;
+  padding: var(--text-s) var(--text-m);
+  box-sizing: border-box;
+  font-family: "Primary";
+  font-size: var(--text-xxl, 5rem);
+  font-weight: 400;
+  color: var(--reds);
+  white-space: nowrap;
+  margin: 0;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 20px;
+}
+.info-cta:hover,
+.info-cta:focus,
+.info-cta:active,
+.info-cta:visited {
+  color: var(--reds);
+  text-decoration: none;
+}
 
 /*FOOTER COMPONENT*/
 footer {
