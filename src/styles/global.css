@@ -927,48 +927,71 @@ footer {
   }
 
   /* Info overlay — side panel becomes a full-width takeover */
-  .info-overlay {
-    height: 100dvh; /* was: height: auto — auto let content push
-                           this box to 1244px, which counted toward
-                           page scroll height even while off-screen */
-    overflow: hidden; /* was: overflow-y: auto */
+   .info-overlay {
+    width: 100%;
+    height: 100dvh;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
+
   .info-overlay-wrap {
     width: 100%;
-    height: 100%; /* new — fills the now-fixed-height parent */
-    overflow-y: auto; /* new — scrolling now happens inside here instead */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .info-wrap {
-    flex-direction: column;
-    gap: var(--text-m);
-  }
-
-  .info-profile {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .info-texts h4 {
-    font-size: 2rem;
-  }
-  .info-img {
+  .info-photo,
+  .info-panel {
     width: 100%;
-  }
-  .info-about h2 {
-    width: 100%;
-    font-size: 2.2rem;
-    text-align: center;
+    height: auto;
+    flex: none;
   }
 
-  .info-texts .bottom {
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding-top: 2rem;
+  .info-photo {
+    padding: 0;
+  }
+
+  .info-photo figure {
+    width: 100%;
+    height: auto;
+  }
+
+  .info-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .info-panel {
+    display: flex;
     flex-direction: column;
+    padding: var(--text-m);
   }
-  .cta {
-    display: none;
+
+  .info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: none;
   }
+
+  .info-meta {
+    flex-direction: column;
+    gap: var(--text-l);
+  }
+
+  .info-cta {
+    flex-shrink: 0;
+    white-space: normal;
+  }
+}
 
   /* Case study intro/meta */
   #project-title {
