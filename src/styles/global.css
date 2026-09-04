@@ -834,7 +834,7 @@ footer {
   }
   .hero-text h1 {
     font-family: "Primary";
-    width: 65%;
+    width: 70%;
     font-weight: 400;
     color: var(--reds);
     font-size: var(--text-4xl);
