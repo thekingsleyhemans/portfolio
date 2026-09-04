@@ -181,9 +181,17 @@ function buildTrack(
 
     originalCards.forEach(card=>{
 
-      wrap.appendChild(
-        card.cloneNode(true)
-      );
+      const clone = card.cloneNode(true);
+
+      // Clones are loop-filler, not part of the one-time intro
+      // reveal — if they keep this class they stay opacity:0 /
+      // translateY(60px) forever, since nothing ever un-hides them.
+      // That's the "invisible clone" bug: scrolling into a clone set
+      // looked like a black flash / broken loop, when really the
+      // cards were just there and hidden.
+      clone.classList.remove("is-intro-hidden");
+
+      wrap.appendChild(clone);
 
     });
 

@@ -1045,4 +1045,22 @@ footer {
   .projects-wrap.is-vertical .project__card > img {
     height: 100%;
   }
+
+  .projects-wrap.is-vertical .project__card {
+    will-change: transform; /* the vertical engine sets a per-card
+                                scale() transform every frame — this
+                                keeps that on its own compositor layer
+                                instead of triggering paint each time */
+  }
+
+  /* The horizontal is-scrolling image shrink (scale(0.7), defined
+     earlier in this file) was tuned for small horizontal cards — on a
+     full-bleed vertical card it exposes a large ring of empty
+     background behind the image, which read as a black flash while
+     sliding. The vertical engine's own per-card scale already gives
+     continuous motion feedback, so this effect is switched off here
+     rather than tuned down — it would be redundant either way. */
+  .projects-container.is-vertical.is-scrolling .project__card img {
+    transform: none;
+  }
 }

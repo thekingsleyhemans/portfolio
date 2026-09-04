@@ -17,10 +17,21 @@ export function initVerticalFlowSlider(container, wrap, originalCount, options =
   const {
     snapDuration = 0.6,
     snapEase = "power3.out",
+    // How much a card shrinks per whole card-step of distance from
+    // center, and the floor so far-off cards don't vanish entirely.
+    scaleFalloff = 0.22,
+    minScale = 0.55,
+    // How many cards on either side of center we bother touching each
+    // frame. The container only ever shows ~2-3 cards at once, so
+    // there's no reason to loop over every clone in the track — this
+    // keeps the per-frame cost constant no matter how long the track
+    // grows to fill the loop buffer.
+    scaleWindowRadius = 3,
   } = options;
 
   let setHeight = measureSetHeight(wrap, originalCount);
-  let cardStep = setHeight / originalCount; // distance between card centers — used to find the nearest snap point
+  let cardStep = setHeight / originalCount || 1; // guard against div-by-zero if measurement fails
+  let totalNodes = wrap.children.length;
 
   let y = 0;
   let velocity = 0;
@@ -47,9 +58,8 @@ export function initVerticalFlowSlider(container, wrap, originalCount, options =
   let animationFrame = null;
   let snapTween = null;
 
-  // This carousel owns the vertical gesture on mobile — block the browser's
-  // native vertical pan so a drag doesn't fight page scroll. Swap to "none"
-  // if you also want to block horizontal gestures (e.g. edge-swipe-back).
+  let touchedNodes = new Set();
+
   container.style.cursor = "grab";
   container.style.touchAction = "pan-x";
 
@@ -64,6 +74,40 @@ export function initVerticalFlowSlider(container, wrap, originalCount, options =
 
   function nearestSnapY() {
     return Math.round(y / cardStep) * cardStep;
+  }
+
+  // The visual "stacked" effect: cards within scaleWindowRadius steps
+  // of whatever's centered get scaled down proportional to how far
+  // they are from center — 1 at dead center, shrinking toward
+  // minScale as distance grows. Only ever touches a handful of DOM
+  // nodes regardless of track length, and resets any node that falls
+  // out of the window back to scale(1) so nothing gets stuck mid-scale.
+  function updateCardScales() {
+    const rawIndex = -y / cardStep;
+    const base = Math.floor(rawIndex);
+
+    const nextTouched = new Set();
+
+    for (let offset = -scaleWindowRadius; offset <= scaleWindowRadius + 1; offset++) {
+      const stepIndex = base + offset;
+      const domIndex = ((stepIndex % totalNodes) + totalNodes) % totalNodes;
+      const node = wrap.children[domIndex];
+      if (!node) continue;
+
+      const distance = stepIndex - rawIndex;
+      const scale = Math.max(minScale, 1 - Math.abs(distance) * scaleFalloff);
+
+      node.style.transform = `scale(${scale})`;
+      nextTouched.add(node);
+    }
+
+    for (const node of touchedNodes) {
+      if (!nextTouched.has(node)) {
+        node.style.transform = "";
+      }
+    }
+
+    touchedNodes = nextTouched;
   }
 
   function settleToSnap() {
@@ -152,16 +196,12 @@ export function initVerticalFlowSlider(container, wrap, originalCount, options =
       pointerId = null;
     }
 
-    // Same reasoning as the horizontal version: setPointerCapture retargets
-    // the click event to `container`, so Astro's router can't find the
-    // anchor — call navigate() directly on a genuine (non-drag) tap.
     if (!hasDragged && pressedCard) {
       const title = pressedCard.querySelector("h3")?.textContent;
       if (title) setNextPageName(title);
 
       navigate(pressedCard.href);
     } else if (!hasDragged) {
-      // Tapped but didn't drag and it wasn't a card link — still settle.
       settleToSnap();
     }
 
@@ -215,14 +255,12 @@ export function initVerticalFlowSlider(container, wrap, originalCount, options =
         wrapY();
         setTransform();
       } else if (velocity !== 0) {
-        // Momentum has died out — hand off to the snap tween instead of
-        // just stopping wherever we happen to be. This is the one real
-        // behavioral difference from the horizontal slider.
         velocity = 0;
         settleToSnap();
       }
     }
 
+    updateCardScales();
     updateMotionState();
 
     animationFrame = requestAnimationFrame(tick);
@@ -255,7 +293,8 @@ export function initVerticalFlowSlider(container, wrap, originalCount, options =
 
     resizeTimer = setTimeout(() => {
       setHeight = measureSetHeight(wrap, originalCount);
-      cardStep = setHeight / originalCount;
+      cardStep = setHeight / originalCount || 1;
+      totalNodes = wrap.children.length;
       wrapY();
       setTransform();
     }, 150);
@@ -264,6 +303,10 @@ export function initVerticalFlowSlider(container, wrap, originalCount, options =
   return () => {
     cancelAnimationFrame(animationFrame);
     snapTween?.kill();
+
+    for (const node of touchedNodes) {
+      node.style.transform = "";
+    }
 
     scrollTarget.removeEventListener("wheel", onWheel);
     container.removeEventListener("pointerdown", onPointerDown);
