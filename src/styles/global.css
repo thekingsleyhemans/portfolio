@@ -953,11 +953,6 @@ footer {
     height: auto;
     flex: none;
   }
-
-  .info-photo {
-    padding: 0;
-  }
-
   .info-photo figure {
     width: 100%;
     height: auto;
