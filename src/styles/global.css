@@ -1004,3 +1004,45 @@ footer {
     flex-wrap: wrap;
   }
 }
+
+/* ==========================================================
+   VERTICAL PEEK-STACK (MOBILE)
+   Class-gated, not media-query-gated: initProjectsSlider.js decides
+   the mode with matchMedia and toggles .is-vertical on mount/resize,
+   so the layout and the drag physics can never disagree at the
+   breakpoint edge. The 900px value below is cosmetic only — it just
+   keeps this rule from ever matching on desktop widths as a fallback
+   — the real switch is the class. Keep MOBILE_BREAKPOINT in
+   initProjectsSlider.js at 900px so the two stay conceptually in sync.
+========================================================== */
+
+@media (max-width: 900px) {
+  .projects-container.is-vertical {
+    height: 78vh;      /* shorter than card + gap — this gap is what
+                           lets the neighboring cards peek in above
+                           and below the centered one */
+    display: flex;
+    align-items: center;
+    touch-action: pan-x; /* this container owns the vertical gesture;
+                             pan-x still lets a horizontal edge-swipe
+                             (e.g. back gesture) through */
+  }
+
+  .projects-wrap.is-vertical {
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+  }
+
+  .projects-wrap.is-vertical .project__card {
+    width: 100%;
+    height: 62vh;      /* fixed height is required — the slider's
+                           snap math assumes every card steps by the
+                           same amount (card height + gap) */
+    margin-right: 0;
+  }
+
+  .projects-wrap.is-vertical .project__card > img {
+    height: 100%;
+  }
+}
