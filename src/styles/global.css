@@ -834,7 +834,7 @@ footer {
   }
   .hero-text h1 {
     font-family: "Primary";
-    width: 50%;
+    width: 65%;
     font-weight: 400;
     color: var(--reds);
     font-size: var(--text-4xl);
@@ -893,7 +893,7 @@ footer {
     justify-content: center;
   }
   .hero-text h1 {
-    font-size: var(--text-3xl);
+    font-size: var(--text-4xl);
   }
 
   .landing-page {
