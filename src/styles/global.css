@@ -889,9 +889,11 @@ footer {
     padding-bottom: 1.25rem; /* was 2rem — trims vertical space so
                                  header + hero + footer fit in one
                                  viewport */
+    display: flex;
+    justify-content: center;
   }
   .hero-text h1 {
-    font-size: var(--text-3xl, var(--text-2xl));
+    font-size: var(--text-3xl);
   }
 
   .landing-page {
