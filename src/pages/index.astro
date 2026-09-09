@@ -6,20 +6,26 @@ import Footer from "../components/Footer.astro";
 import Preloader from "../components/Preloader.astro";
 import InfoOverlay from "../components/InfoOverlay.astro";
 import Hero from "../components/Hero.astro";
+
+import MobileHeader from "../components/MobileHeader.astro";
+import MobileHero from "../components/MobileHero.astro";
 ---
 
 <BaseLayout>
+  <Preloader />
 
-    <Preloader />
-
+  <div class="desktop-home">
     <Header />
-
     <InfoOverlay />
-
     <Hero />
-
     <Footer />
+  </div>
 
+  <div class="mobile-home">
+    <MobileHeader />
+    <InfoOverlay />
+    <MobileHero />
+  </div>
 </BaseLayout>
 
 <script>
