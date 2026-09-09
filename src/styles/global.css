@@ -1037,10 +1037,33 @@ footer {
     width: 100%;
     height: 100dvh;
     min-height: 100dvh;
+
     display: flex;
     flex-direction: column;
+
     overflow: hidden;
     position: relative;
+  }
+
+  .mobile-home .mobile-main {
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .mobile-home > footer {
+    width: 100%;
+    flex: 0 0 auto;
+    margin-top: 1.5rem;
+    padding-bottom: var(--text-xs);
+    position: relative;
+    z-index: 20;
+  }
+  .mobile-home .mobile-project-deck {
+    height: auto;
+    min-height: 0;
   }
 
 
@@ -1218,31 +1241,30 @@ footer {
   }
 
   .mobile-project-card {
-    position: absolute;
-    top: 0;
-    left: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
 
-    width: min(76vw, 19rem);
-    height: min(76vw, 19rem);
+  width: min(76vw, 19rem);
+  height: min(76vw, 19rem);
 
-    margin-left: calc(min(76vw, 19rem) / -2);
+  margin-left: calc(min(76vw, 19rem) / -2);
 
-    display: block;
-    overflow: hidden;
+  display: block;
+  overflow: hidden;
 
-    border-radius: 0.65rem;
-    background: var(--reds);
+  border-radius: 0.65rem;
+  background: var(--reds);
 
-    text-decoration: none;
-    transform-origin: 50% 100%;
+  text-decoration: none;
+  transform-origin: 50% 100%;
 
-    will-change: transform, opacity;
+  will-change: transform;
 
-    -webkit-user-drag: none;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
 
   /* ==========================
      CARD IMAGE
