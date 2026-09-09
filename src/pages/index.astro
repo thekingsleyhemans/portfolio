@@ -16,16 +16,17 @@ import MobileHero from "../components/MobileHero.astro";
 
   <div class="desktop-home">
     <Header />
-    <InfoOverlay />
     <Hero />
     <Footer />
   </div>
 
   <div class="mobile-home">
     <MobileHeader />
-    <InfoOverlay />
     <MobileHero />
   </div>
+
+  <!-- One shared overlay for both desktop and mobile. -->
+  <InfoOverlay />
 </BaseLayout>
 
 <script>
